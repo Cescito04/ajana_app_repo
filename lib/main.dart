@@ -4,6 +4,7 @@ import 'package:myfirstapp/pages/accueil.page.dart';
 import 'package:myfirstapp/pages/actualites.page.dart';
 import 'package:myfirstapp/pages/boutique.page.dart';
 import 'package:myfirstapp/pages/chat.page.dart';
+import 'package:myfirstapp/pages/contact.page.dart';
 import 'package:myfirstapp/pages/counter.page.dart';
 import 'package:myfirstapp/pages/dons.page.dart';
 import 'package:myfirstapp/pages/home.page.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         "/actualites": (context) => ActualitePage(),
         "/boutique": (context) => BoutiquePage(),
         "/dons": (context) => DonPage(),
+        "/contact": (context) => ContactPage(),
         "/a_propos": (context) => AproposPage(),
         "/jaayante": (context) => JaayantePage(),
         "/counter": (context) => CounterPage(),

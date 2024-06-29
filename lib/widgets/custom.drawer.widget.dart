@@ -60,6 +60,16 @@ class MyCustomDrawer extends StatelessWidget {
             color: Theme.of(context).primaryColor,
           ),
           MyDrawerItem(
+            title: "Contact",
+            itemIcon:
+            Icon(Icons.contact_mail, color: Theme.of(context).primaryColor),
+            route: "/contact",
+          ),
+          Divider(
+            height: 1,
+            color: Theme.of(context).primaryColor,
+          ),
+          MyDrawerItem(
             title: "Jaayanté",
             itemIcon:
                 Icon(Icons.credit_card, color: Theme.of(context).primaryColor),

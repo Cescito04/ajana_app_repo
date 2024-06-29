@@ -21,129 +21,232 @@ class AccueilPage extends StatelessWidget {
       imageUrl: 'images/pins_or.jpeg', // Mettez l'URL correct ici
     ),
   ];
+  List<String> infoImages = [
+    'images/actu_1.jpeg',
+    'images/actu_2.jpg',
+    'images/actu_3.jpg',
+    'images/actu_4.jpg',
+  ];
+  List<String> infoTitles = [
+    'Les Khalifs d\'El Hadj Malick Sy (rta)',
+    'Communiqué Jama’atou Nour Assouniya ',
+    'VIDEO – Serigne Babacar Sy Mansour ',
+    'PHOTOS ET VIDEO – Déclaration Commune ',
+  ];
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: MyCustomDrawer(),
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            "AJANA",
-            style: TextStyle(color: Theme.of(context).indicatorColor),
+      drawer: MyCustomDrawer(),
+      appBar: AppBar(
+        title: Text(
+          "Accueil",
+          style: TextStyle(color: Theme.of(context).indicatorColor),
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: buildHorizontalImageList(),
           ),
-          backgroundColor: Theme.of(context).primaryColor,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: Icon(
-                Icons.search_rounded,
-                color: Colors.white,
+          SliverToBoxAdapter(
+            child: SizedBox(height: 20),
+          ),
+          SliverToBoxAdapter(
+            child: buildBannerImage(),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(height: 20),
+          ),
+          SliverToBoxAdapter(
+            child: buildSectionTitleRow(
+              title: 'BOUTIQUE',
+              actionText: 'VOIR PLUS',
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: buildProductSection(),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(height: 20),
+          ),
+          SliverToBoxAdapter(
+            child: buildSectionTitleRow(
+              title: 'ACTUALITÉS',
+              actionText: 'VOIR PLUS',
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                return buildNewsItem(index,context);
+              },
+              childCount: 4,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  Widget buildHorizontalImageList() {
+    return Container(
+      height: 200,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: imagePaths.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: Container(
+              width: 450,
+              child: Image.asset(
+                imagePaths[index],
+                fit: BoxFit.cover,
               ),
             ),
-            // Icon(Icons.add_shopping_cart)
+          );
+        },
+      ),
+    );
+  }
+
+  Widget buildBannerImage() {
+    return Container(
+      height: 80,
+      width: double.infinity,
+      child: Image.asset(
+        'images/banner.png',
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  Widget buildSectionTitleRow({required String title, required String actionText}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Icon(
+                Icons.shopping_cart,
+                color: Color.fromARGB(255, 89, 119, 70),
+              ),
+            ),
+            SizedBox(width: 10),
+            Text(
+              title,
+              style: TextStyle(
+                color: Color.fromARGB(255, 89, 119, 70),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
           ],
         ),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            children: [
-              Container(
-                height: 200,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: imagePaths.length,
-                  itemBuilder: (context, index) {
-                    return SingleChildScrollView(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5),
-                        child: Column(
-                          children: [
-                            Container(
-                              width: 450,
-                              child: Image.asset(imagePaths[index],
-                                  fit: BoxFit.cover),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
+        Row(
+          children: [
+            Text(
+              actionText,
+              style: TextStyle(
+                color: Color.fromARGB(255, 89, 119, 70),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
               ),
-              SizedBox(
-                height: 20,
+            ),
+            Icon(
+              Icons.arrow_right_rounded,
+              size: 30,
+              color: Color.fromARGB(255, 89, 119, 70),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildProductSection() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: products.map((product) {
+        return buildProductCard(product);
+      }).toList(),
+    );
+  }
+
+  Widget buildNewsItem(int index,BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Container(
+        margin: EdgeInsets.all(8.0),
+        height: 80,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          border: Border.all(color: Color.fromARGB(255, 89, 119, 70)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              height: 80,
+              width: 80,
+              child: Image.asset(
+                infoImages[index],
+                fit: BoxFit.cover,
               ),
-              Container(
-                height: 80,
-                width: double.infinity,
-                child: Image.asset(
-                  'images/banner.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    infoTitles[index],
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 5),
                   Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Icon(
-                          Icons.shopping_cart,
-                          color: Color.fromARGB(255, 89, 119, 70),
-                        ),
+                      Icon(
+                        Icons.timelapse_outlined,
+                        color: Colors.grey,
+                        size: 20,
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
+                      SizedBox(width: 5),
                       Text(
-                        'BOUTIQUE',
+                        'Il y a une année',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 89, 119, 70),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400),
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'VOIR PLUS',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 89, 119, 70),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Icon(Icons.arrow_right_rounded,
-                          size: 30, color: Color.fromARGB(255, 89, 119, 70))
-                    ],
-                  )
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: products.map((product) {
-                  return buildProductCard(product);
-                }).toList(),
-              ),
-            ],
-          ),
-        ));
+            )
+          ],
+        ),
+      ),
+    );
   }
+
+
 
 
   Widget buildProductCard(Product product) {
     return Container(
+      margin: EdgeInsets.all(5.0),
       height: 200,
-      width: 200,
+      width: 180,
       child: Card(
         elevation: 10,
         shape: RoundedRectangleBorder(
@@ -209,4 +312,7 @@ class AccueilPage extends StatelessWidget {
       ),
     );
   }
+
+
+
 }
