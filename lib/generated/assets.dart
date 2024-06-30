@@ -2,6 +2,24 @@
 class Assets {
   Assets._();
 
-  static const String imagesImg = 'images/img2.png';
+  static const String imagesActu1 = 'images/actu_1.jpeg';
+  static const String imagesActu2 = 'images/actu_2.jpg';
+  static const String imagesActu3 = 'images/actu_3.jpg';
+  static const String imagesActu4 = 'images/actu_4.jpg';
+  static const String imagesBanner = 'images/banner.png';
+  static const String imagesCartes2 = 'images/cartes2.jpg';
+  static const String imagesCartes3 = 'images/cartes3.jpg';
+  static const String imagesCartes4 = 'images/cartes4.jpg';
+  static const String imagesCategory1 = 'images/category_1.jpg';
+  static const String imagesCategory2 = 'images/category_2.jpg';
+  static const String imagesCategory3 = 'images/category_3.jpg';
+  static const String imagesCategory4 = 'images/category_4.jpg';
+  static const String imagesCategory5 = 'images/category_5.jpg';
+  static const String imagesCategory6 = 'images/category_6.jpg';
+  static const String imagesImg2 = 'images/img2.png';
+  static const String imagesPinsArgent = 'images/pins_argent.jpg';
+  static const String imagesPinsOr = 'images/pins_or.jpeg';
   static const String imagesProfil = 'images/profil.png';
+  static const String imagesSlider1 = 'images/slider1.jpg';
+  static const String imagesSlider2 = 'images/slider2.jpg';
 }

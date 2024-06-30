@@ -34,7 +34,6 @@ class AccueilPage extends StatelessWidget {
     'PHOTOS ET VIDEO – Déclaration Commune ',
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,8 +79,8 @@ class AccueilPage extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                return buildNewsItem(index,context);
+              (context, index) {
+                return buildNewsItem(index, context);
               },
               childCount: 4,
             ),
@@ -90,6 +89,7 @@ class AccueilPage extends StatelessWidget {
       ),
     );
   }
+
   Widget buildHorizontalImageList() {
     return Container(
       height: 200,
@@ -123,7 +123,8 @@ class AccueilPage extends StatelessWidget {
     );
   }
 
-  Widget buildSectionTitleRow({required String title, required String actionText}) {
+  Widget buildSectionTitleRow(
+      {required String title, required String actionText}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -177,7 +178,7 @@ class AccueilPage extends StatelessWidget {
     );
   }
 
-  Widget buildNewsItem(int index,BuildContext context) {
+  Widget buildNewsItem(int index, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
@@ -185,8 +186,8 @@ class AccueilPage extends StatelessWidget {
         height: 80,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          border: Border.all(color: Color.fromARGB(255, 89, 119, 70)),
-        ),
+            //border: Border.all(color: Color.fromARGB(255, 0, 0, 0)),
+            ),
         child: Row(
           children: [
             Container(
@@ -239,9 +240,6 @@ class AccueilPage extends StatelessWidget {
     );
   }
 
-
-
-
   Widget buildProductCard(Product product) {
     return Container(
       margin: EdgeInsets.all(5.0),
@@ -282,7 +280,8 @@ class AccueilPage extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         product.price,
-                        style: TextStyle(color: Color.fromARGB(255, 89, 119, 70)),
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 89, 119, 70)),
                       ),
                     ),
                     Padding(
@@ -312,7 +311,4 @@ class AccueilPage extends StatelessWidget {
       ),
     );
   }
-
-
-
 }
